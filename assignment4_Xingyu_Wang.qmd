@@ -46,8 +46,6 @@ load the data.
 rd_fq <- read_csv("data/FAOSTAT_data_5s_6-10-2025.csv")
 rd_fp <- read_csv("data/FAOSTAT_data_food_pice_6-13-2025.csv")
 rd_fp_china <- read_csv("data/china_food_cpi.csv")
-exchange_rate <- read_csv("data/f183cd58-c15e-4b10-89be-657c9d6985c5_Data.csv")
-
 ```
 
 ps: 记得参考原数据。 食品价格的数据估计得求年平均，因为他给的是每个月的。
@@ -69,36 +67,8 @@ de_fq <- rd_fq %>%
             `Element Code`, `Element`, 
             `Item Code`, `Year Code`, `Note`)) %>%
   filter(!str_detect(Year, "^\\d{4}-\\d{4}$"))   #不相符的研究时间单位
-
-exchange_rate_USD_RMB <- exchange_rate %>%
-  filter(`Country Name` == "China") %>%
-  pivot_longer(cols = `2000 [YR2000]`:`2024 [YR2024]`, 
-    names_to = "year",
-    values_to = "exchange_rate") %>%
-  select(-c(`Country Name`, `Series Code`)) %>%
-  mutate(year = substr(year, 1, 4))
-
-#Value 值是：Official exchange rate (LCU per US$, period average)
-df_long <- df %>%
- 
 ```
 
-```{r}
-str(exchange_rate)
-```
-
-查看数据
-
-```{r}
-#为NA的数据
-#有几行
-colSums(is.na(de_fq))#是些什么：食品质量数据：没有新加坡的-不要了，缺失值太多难以补全
-na_rows <- de_fp %>% filter(is.na(`Unit`))
-pre <- de_fp %>%
-  filter(Unit == '%')
-
-unique(pre$Area)
-```
 食品价格指数（Food Price Index, FPI）
 数据值处理
 ```{r}
@@ -113,9 +83,12 @@ sup_fp <- de_fp %>%
   summarise(con_p_food_indices_year = mean(Value, na.rm = TRUE)) %>%  
   ungroup()
 ```
+
 处理中国的数据基年
+
 ```{r}
-rd_fp_china <- rd_fp_china %>%
+
+rd_fp_china_2015 <- rd_fp_china %>%
   # Convert to numeric in case the column is character type
   mutate(cpi_food_numeric = as.numeric(cpi_food_based_previous_year)) %>%
   arrange(year) %>%
@@ -133,11 +106,10 @@ rd_fp_china <- rd_fp_china %>%
       if (base_index < n()) {
         for (i in (base_index + 1):n()) {
           index_vals[i] <- index_vals[i - 1] * (cpi_food_numeric[i] / 100)}}
-      index_vals})  # Return the full vector
-
-#将货币单位转换成美元
+      index_vals}) # Return the full vector
 
 ```
+
 
 清洁数据名字以及数据类型
 ```{r}
@@ -148,17 +120,11 @@ de_fq_cleaned <- de_fq %>%
 sup_fp_cleaned <- sup_fp %>%
   clean_names() 
 
-rd_fp_china_cleaned <- rd_fp_china %>%
-  clean_names() %>%
-  select(-c("area", "cpi_food_numeric", 
-            "cpi_food_based_previous_year" ))
+rd_fp_china_cleaned <- rd_fp_china_2015 %>%
+  select(-c("Area", "cpi_food_numeric", 
+            "cpi_food_based_previous_year")) %>%
+  clean_names()
 ```
-
-```{r}
-str(comp_fp)
-str(de_fq_cleaned)
-```
-
 
 合并数据集
 ```{r}
@@ -169,12 +135,6 @@ data <- de_fq_cleaned %>%
   select(-c(flag_description))
 
 ```
-
-str
-```{r}
-unique(data$item)
-```
-
 
 
 limitation:
