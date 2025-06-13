@@ -28,6 +28,8 @@ library(tidyverse)
 library(tidyr)
 library(dplyr)
 library(stringr)
+library(janitor)
+library(ggplot2)
 ```
 
 Steps to download the data【需改】 
@@ -48,7 +50,6 @@ rd_fp_china <- read_csv("data/china_food_cpi.csv")
 ```
 
 ps: 记得参考原数据。 食品价格的数据估计得求年平均，因为他给的是每个月的。
-
 
 清理数据：
 
@@ -95,28 +96,73 @@ sup_fp <- de_fp %>%
   group_by(`Area Code (ISO3)`, Year) %>%       
   summarise(con_p_food_indices_year = mean(Value, na.rm = TRUE)) %>%  
   ungroup()
+```
+处理中国的数据基年
+```{r}
+rd_fp_china <- rd_fp_china %>%
+  # Convert to numeric in case the column is character type
+  mutate(cpi_food_numeric = as.numeric(cpi_food_based_previous_year)) %>%
+  arrange(year) %>%
+  # Create a new column: CPI with base year = 2015
+  mutate(
+    con_p_food_indices_year = {
+      base_index <- which(year == 2015)   # Find the position of the base year (2015)
+      index_vals <- numeric(n())   # Create a vector to store the new index values
+      index_vals[base_index] <- 100      # Set 2015 as 100
+    # Backward calculation (e.g., 2000–2014)
+      if (base_index > 1) {
+        for (i in (base_index - 1):1) {
+          index_vals[i] <- index_vals[i + 1] / (cpi_food_numeric[i + 1] / 100)}}
+    # Forward calculation (e.g., 2016–)
+      if (base_index < n()) {
+        for (i in (base_index + 1):n()) {
+          index_vals[i] <- index_vals[i - 1] * (cpi_food_numeric[i] / 100)}}
+      index_vals})  # Return the full vector
 
-unique(de_fq$`Area`)
+#将货币单位转换成美元
 
 ```
-limitation:
-各国的核算方式随时间变化，例如中国在计算2000的数据时，并没有把“烟草”“酒”单独列出，而是包含在了食品项下面，在2001年时则将其剔除，而在2017年时，又将二者合并计数同时分别给出数值。
 
-variable names
+清洁数据名字以及数据类型
+```{r}
+de_fq_cleaned <- de_fq %>%
+  clean_names() %>%
+  mutate(across(c(year, value), as.numeric))
+
+sup_fp_cleaned <- sup_fp %>%
+  clean_names() 
+
+rd_fp_china_cleaned <- rd_fp_china %>%
+  clean_names() %>%
+  select(-c("area", "cpi_food_numeric", 
+            "cpi_food_based_previous_year" ))
+```
 
 ```{r}
-names(sup_fp)
+str(comp_fp)
+str(de_fq_cleaned)
 ```
 
-variable values
-
-```{r}
-unique(de_fq$`Area`)
-
-```
 
 合并数据集
+```{r}
+comp_fp <- bind_rows(sup_fp_cleaned, rd_fp_china_cleaned)
+  
+data <- de_fq_cleaned %>%
+  left_join(comp_fp, by = c("area_code_iso3", "year")) %>%
+  select(-c(flag_description))
 
+```
+
+str
+```{r}
+unique(data$item)
+```
+
+
+
+limitation:
+各国的核算方式随时间变化，例如中国在计算2000的数据时，并没有把“烟草”“酒”单独列出，而是包含在了食品项下面，在2001年时则将其剔除，而在2017年时，又将二者合并计数同时分别给出数值。
 
 ### Remember
 
@@ -148,6 +194,8 @@ There is no strict structure for you to follow. However, here is a skeleton stru
 Find out the history version in my [git repository](https://github.com/Acrea-QwQ/5512_Assignment_4_XyW.git).
 
 ### What's in this section
+
+补充中国的food price数据花了好久的时间，因为数据是以图片形式呈现的，无法进行抓取
 
 Here is where you should tell us about your reflection on your analysis (Task 3).
 
