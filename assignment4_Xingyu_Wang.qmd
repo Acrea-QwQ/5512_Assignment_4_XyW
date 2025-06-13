@@ -1,5 +1,5 @@
 ---
-title: "What is your blogpost title? Add it here??"
+title: "WWhich country has the most expensive diet? Is it worth what they eat?"
 subtitle: "Assignment 4 ETC5512"
 author: "Xingyu Wang"
 format: html
@@ -46,6 +46,7 @@ load the data.
 rd_fq <- read_csv("data/FAOSTAT_data_5s_6-10-2025.csv")
 rd_fp <- read_csv("data/FAOSTAT_data_food_pice_6-13-2025.csv")
 rd_fp_china <- read_csv("data/china_food_cpi.csv")
+exchange_rate <- read_csv("data/f183cd58-c15e-4b10-89be-657c9d6985c5_Data.csv")
 
 ```
 
@@ -69,6 +70,21 @@ de_fq <- rd_fq %>%
             `Item Code`, `Year Code`, `Note`)) %>%
   filter(!str_detect(Year, "^\\d{4}-\\d{4}$"))   #不相符的研究时间单位
 
+exchange_rate_USD_RMB <- exchange_rate %>%
+  filter(`Country Name` == "China") %>%
+  pivot_longer(cols = `2000 [YR2000]`:`2024 [YR2024]`, 
+    names_to = "year",
+    values_to = "exchange_rate") %>%
+  select(-c(`Country Name`, `Series Code`)) %>%
+  mutate(year = substr(year, 1, 4))
+
+#Value 值是：Official exchange rate (LCU per US$, period average)
+df_long <- df %>%
+ 
+```
+
+```{r}
+str(exchange_rate)
 ```
 
 查看数据
