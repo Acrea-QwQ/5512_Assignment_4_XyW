@@ -1,22 +1,122 @@
 ---
 title: "What is your blogpost title? Add it here??"
 subtitle: "Assignment 4 ETC5512"
-author: "Who are you?? Add your name here"
+author: "Xingyu Wang"
 format: html
 editor: visual
 ---
 
-
-::: {.panel-tabset}
-
+::: panel-tabset
 <!-- Task 1 Tab: Data and Documenting -->
+
 ## Data and Documenting
 
 ### What's in this section
 
 Here is where you should provide the more comprehensive details about your data and your processing steps.
 
-These are the data details that an "average" blog post reader is not concerned with (Task 1). 
+These are the data details that an "average" blog post reader is not concerned with (Task 1).
+
+load the library
+
+```{r}
+#| warning: false
+#| message: false
+
+library(readr)
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+library(stringr)
+```
+
+Steps to download the data【需改】 
+Navigate to the FAOSTAT home page. ● Click on the "Data" tab or "Explore Data" to browse available datasets. ● Select a domain (e.g., "Production") and a subsection (e.g., "Crops and livestock products"). ● Apply filters for specific countries, years, or commodities. ● Click "View" to display the data, then select "Download" to save it in formats like CSV or Excel.
+
+License: Data is available under [the Creative Commons Attribution 4.0 International (CC BY 4.0) license](https://creativecommons.org/licenses/by/4.0/), which permits users to: ○ Share, adapt, and use the data for any purpose including commercial use as long as proper attribution is made.
+
+load the data.
+
+```{r}
+#| warning: false
+#| message: false
+
+rd_fq <- read_csv("data/FAOSTAT_data_5s_6-10-2025.csv")
+rd_fp <- read_csv("data/FAOSTAT_data_food_pice_6-13-2025.csv")
+rd_fp_china <- read_csv("data/china_food_cpi.csv")
+
+```
+
+ps: 记得参考原数据。 食品价格的数据估计得求年平均，因为他给的是每个月的。
+
+
+清理数据：
+
+去除不要的
+
+```{r}
+
+#重复的相同的值
+de_fp <- rd_fp %>%
+  select(-c(`Domain Code`, `Domain`, 
+            `Element Code`, `Element`, 
+            `Item Code`, `Year Code`, `Note`))
+
+de_fq <- rd_fq %>%
+  select(-c(`Domain Code`, `Domain`, 
+            `Element Code`, `Element`, 
+            `Item Code`, `Year Code`, `Note`)) %>%
+  filter(!str_detect(Year, "^\\d{4}-\\d{4}$"))   #不相符的研究时间单位
+
+```
+
+查看数据
+
+```{r}
+#为NA的数据
+#有几行
+colSums(is.na(de_fq))#是些什么：食品质量数据：没有新加坡的-不要了，缺失值太多难以补全
+na_rows <- de_fp %>% filter(is.na(`Unit`))
+pre <- de_fp %>%
+  filter(Unit == '%')
+
+unique(pre$Area)
+```
+食品价格指数（Food Price Index, FPI）
+数据值处理
+```{r}
+#| message: false
+
+sup_fp <- de_fp %>% 
+ #补充N/A value：de_fp的Unit 列: 食品价格指数常采用拉氏指数（Laspeyres Index）计算
+  replace_na(list(Unit = "laspeyres_index")) %>%
+ # 计算每国每年的食品价格指数的平均值
+  filter(Unit == "laspeyres_index") %>%  
+  group_by(`Area Code (ISO3)`, Year) %>%       
+  summarise(con_p_food_indices_year = mean(Value, na.rm = TRUE)) %>%  
+  ungroup()
+
+unique(de_fq$`Area`)
+
+```
+limitation:
+各国的核算方式随时间变化，例如中国在计算2000的数据时，并没有把“烟草”“酒”单独列出，而是包含在了食品项下面，在2001年时则将其剔除，而在2017年时，又将二者合并计数同时分别给出数值。
+
+variable names
+
+```{r}
+names(sup_fp)
+```
+
+variable values
+
+```{r}
+unique(de_fq$`Area`)
+
+```
+
+合并数据集
+
 
 ### Remember
 
@@ -24,7 +124,7 @@ Please mention any additional files that you want the markers to review, eg. rea
 
 <!-- Task 2 Tab: Writing your blogpost -->
 
-## Blog post 
+## Blog post
 
 ### What's in this section
 
@@ -32,22 +132,24 @@ Here is where you should write your blogpost! (Task 2)
 
 ### Blogpost Structure
 
-There is no strict structure for you to follow. However, here is a skeleton structure you may find helpful. 
+There is no strict structure for you to follow. However, here is a skeleton structure you may find helpful.
 
-1. Title (is set at the top of this document)
-2. Motivation  
-3. Data  
-4. Analysis     
-5. Conclusions  
-6. References 
-
+1.  Title (is set at the top of this document)
+2.  Motivation\
+3.  Data\
+4.  Analysis\
+5.  Conclusions\
+6.  References
 
 <!-- Task 3 Tab: Behind the Scenes -  -->
+
 ## Behind the Scenes
+
+Find out the history version in my [git repository](https://github.com/Acrea-QwQ/5512_Assignment_4_XyW.git).
 
 ### What's in this section
 
 Here is where you should tell us about your reflection on your analysis (Task 3).
 
 Again, these are the details about **your** perspective and the gritty details behind the scenes of your analysis.
-
+:::
