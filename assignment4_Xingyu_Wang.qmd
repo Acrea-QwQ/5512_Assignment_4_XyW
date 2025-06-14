@@ -80,7 +80,7 @@ his_classif_of_regions <- his_classif_of_regions %>%
 
 ```{r}
 names(his_classif_of_regions)
-unique(data$area_code_iso3)
+unique(his_classif_of_regions$classification)
 ```
 
 食品价格指数（Food Price Index, FPI）
@@ -147,7 +147,10 @@ comp_fp <- bind_rows(sup_fp_cleaned, rd_fp_china_cleaned)
 data <- de_fq_cleaned %>%
   left_join(comp_fp, by = c("area_code_iso3", "year")) %>%
   select(-c(flag_description)) %>%
-  rename(food_price = con_p_food_indices_year)
+  rename(food_price = con_p_food_indices_year) %>%
+  left_join(his_classif_of_regions, by = "area_code_iso3")
+
+data$classification <- as.factor(data$classification)
 ```
 
 输出数据集
@@ -190,27 +193,111 @@ names(data)
 unique(data$item)
 ```
 画图
-1.多国家分面图
+
+准备工作：
 ```{r}
-# 筛选出你关心的那一项
-energy_req_data <- data %>%
+#|message: false
+
+country_colours <- c(
+    "Australia"                = "#1116f7",
+    "China"                    = "#DE2910",
+    "France"                   = "#74bff4",
+    "Germany"                  = "#FFCC00",
+    "India"                    = "#b89aff",
+    "Japan"                    = "#970502",
+    "Nigeria"                  = "#008751",
+    "Serbia"                   = "#6ef1e7",
+    "Singapore"                = "#ff9d66",
+    "South Africa"             = "#0c0c0e",
+    "United States of America" = "#bfd2ec")
+
+country_class <- c("Developing" = "solid", 
+                   "Developed" = "dashed")
+```
+
+画图
+```{r}
+unique(data$item)
+```
+
+3.多个国家展示一个数据:
+
+Food Price
+```{r}
+#去除Nigra这个异常值
+plot_fp_nonni <- data %>% 
+  filter(area != "Nigeria") 
+#画图
+ggplot(plot_fp_nonni, aes(x = year, 
+                      y = food_price, 
+                      color = area, 
+                      linetype = classification)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Food Price (2000–2023)",
+    x = "Year",
+    y = "Laspeyres Index(unitless)",
+    color = "Country",
+    linetype = "Classification"
+  ) +
+  scale_color_manual(values = country_colours) +
+  scale_linetype_manual(values = country_class) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    legend.key.width = unit(1, "cm"), 
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+不同维度的指标方程式化：
+```{r}
+plot_itmes_in_food_quality <- function(data, plot_title, y_label) {
+  ggplot(data, aes(x = year, y = value, color = area, linetype = classification)) +
+    geom_line(size = 1) +
+    labs(title = plot_title,
+         x = "Year",
+         y = y_label,
+         color = "Country",
+         linetype = "Classification") +
+    scale_color_manual(values = country_colours) +
+    scale_linetype_manual(values = country_class) +
+    theme_minimal() +
+    theme(legend.position = "right",
+          legend.key.width = unit(1, "cm"), 
+          plot.title = element_text(hjust = 0.5))}
+```
+
+.1Per capita food supply variability (kcal/cap/day)
+```{r}
+#数据集准备
+plot_data_pfsv <- data %>%
+  filter(item == "Per capita food supply variability (kcal/cap/day)")
+
+
+# 绘图
+plot_itmes_in_food_quality(
+  data = plot_data_pfsv,
+  plot_title = "Per Capita Food Supply Variability (2000–2023)",
+  y_label = "Per Capita Variability(unit: kcal/cap/day)")
+```
+
+.2Average dietary energy requirement (kcal/cap/day)
+```{r}
+#数据集准备
+plot_data_aer <- data %>%
   filter(item == "Average dietary energy requirement (kcal/cap/day)")
 
-# 合并energy和food_price（假设在同一行，不需要 reshape）
-plot_er <- energy_req_data %>%
-  select(area, year, value, food_price) %>%
-  rename(energy_req = value)
-
-# 画图
-ggplot(plot_er, aes(x = year)) +
-  geom_line(aes(y = energy_req, color = "Energy Requirement")) +
-  geom_line(aes(y = food_price, color = "Food Price")) +
-  facet_wrap(~ area) +
-  labs(x = "Year", y = "Value", color = "Indicator",
-       title = "Trends of Energy Requirement and Food Price Over Time") +
-  theme_minimal()
+# 绘图
+plot_itmes_in_food_quality(
+  data = plot_data_aer,
+  plot_title = "Average Dietary Energy Requirement (2000–2023)",
+  y_label = "Average Requirement(unit: kcal/cap/day)")
 ```
-2.双y轴画中国的图
+
+
+
+单个国家的数据
+
 估算缩放数值
 ```{r}
 data %>%
@@ -233,37 +320,39 @@ plot_china_data <- data %>%
 # 为了使它们在图上比例差不多，我们缩放 food_price
 # 比如乘上 20（也可以根据实际均值比例动态调整）
 ggplot(plot_china_data, aes(x = year)) +
-  geom_line(aes(y = energy_req, color = "Energy Requirement"), size = 1) +
-  geom_line(aes(y = food_price * 30, color = "Food Price (scaled)"), size = 1, linetype = "dashed") +
-  scale_y_continuous(
-    name = "Energy Requirement (kcal/cap/day)",
-    sec.axis = sec_axis(~ . / 40, name = "Food Price Index (2015 = 100)")
-  ) +
+  geom_line(aes(y = energy_req), 
+            size = 1) +
+  geom_line(aes(y = food_price * 30), 
+            size = 1, 
+            linetype = "dashed") +
+  scale_y_continuous(name = "Energy Requirement (kcal/cap/day)",
+                     sec.axis = sec_axis(~ . / 30, 
+                                         name = "Food Price Index (2015 = 100)")) +
   labs(title = "Energy Requirement vs Food Price in China",
-       x = "Year",
-       color = "Indicator") +
+       x = "Year") +
   theme_minimal() +
   theme(legend.position = "bottom")
 ```
-3.多个国家展示一个数据
+
+挑选典型国家进行分面对比
 ```{r}
-plot_data <- data %>%
+# 筛选出你关心的那一项
+energy_req_data <- data %>%
   filter(item == "Average dietary energy requirement (kcal/cap/day)")
 
-# 绘图
-ggplot(plot_data, aes(x = year, y = value, color = area)) +
-  geom_line(size = 1) +
-  labs(
-    title = "Average Dietary Energy Requirement (2000–2023)",
-    x = "Year",
-    y = "kcal/cap/day",
-    color = "Country"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "bottom",
-    plot.title = element_text(hjust = 0.5)
-  )
+# 合并energy和food_price（假设在同一行，不需要 reshape）
+plot_er <- energy_req_data %>%
+  select(area, year, value, food_price) %>%
+  rename(energy_req = value)
+
+# 画图
+ggplot(plot_er, aes(x = year)) +
+  geom_line(aes(y = energy_req, color = "Energy Requirement")) +
+  geom_line(aes(y = food_price, color = "Food Price")) +
+  facet_wrap(~ area) +
+  labs(x = "Year", y = "Value", color = "Indicator",
+       title = "Trends of Energy Requirement and Food Price Over Time") +
+  theme_minimal()
 ```
 
 
@@ -299,7 +388,7 @@ National Bureau of Statistics of China. (2022). China Statistical Yearbook 2022.
 National Bureau of Statistics of China. (2023). China Statistical Yearbook 2023. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
 National Bureau of Statistics of China. (2024). China Statistical Yearbook 2024. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
 
-✅ 说明：
+
 
 
 
