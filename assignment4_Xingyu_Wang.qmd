@@ -1,5 +1,5 @@
 ---
-title: "WWhich country has the most expensive diet? Is it worth what they eat?"
+title: "Which Asian country has the most expensive diet over time? Is it increasingly worth what they eat?"
 subtitle: "Assignment 4 ETC5512"
 author: "Xingyu Wang"
 format: html
@@ -280,24 +280,13 @@ plot_itmes_in_food_quality(
   y_label = "Average Requirement(unit: kcal/cap/day)")
 ```
 
-.2Average dietary energy requirement (kcal/cap/day)
-```{r}
-#数据集准备
-plot_data_aer <- data %>%
-  filter(item == "Average dietary energy requirement (kcal/cap/day)")
-
-# 绘图
-plot_itmes_in_food_quality(
-  data = plot_data_aer,
-  plot_title = "Average Dietary Energy Requirement (2000–2023)",
-  y_label = "Average Requirement(unit: kcal/cap/day)")
-```
-
 .3 Prevalence of undernourishment (percent) (3-year average)
+
+Note: 没有新加坡的数据，因为【补充理由以及论文链接】
 ```{r}
-#数据集准备
+#数据集准备:
 plot_data_pu <- data %>%
-  filter(item == "Prevalence of undernourishment (percent) (3-year average))")
+  filter(item == "Prevalence of undernourishment (percent) (3-year average)")
 
 # 绘图
 plot_itmes_in_food_quality(
