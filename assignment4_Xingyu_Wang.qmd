@@ -43,8 +43,8 @@ load the data.
 #| warning: false
 #| message: false
 
-rd_fq <- read_csv("data/FAOSTAT_data_5s_6-10-2025.csv")
-rd_fp <- read_csv("data/FAOSTAT_data_food_pice_6-13-2025.csv")
+rd_fq <- read_csv("data/FAOSTAT_data_en_6-14-2025.csv")
+rd_fp <- read_csv("data/FAOSTAT_data_en_price_6-14-2025.csv")
 rd_fp_china <- read_csv("data/china_food_cpi.csv")
 his_classif_of_regions <- read_excel("data/historical-classification-of-developed-and-developing-regions.xlsx", sheet = 2)
 ```
@@ -80,13 +80,26 @@ his_classif_of_regions <- his_classif_of_regions %>%
 
 ```{r}
 names(his_classif_of_regions)
-unique(his_classif_of_regions$classification)
+unique(de_fq$Area)
+```
+```{r}
+#为NA的数据
+#有几行
+colSums(is.na(de_fp))#是些什么
+na_rows <- de_fp %>% filter(is.na(`Unit`))
+pre <- de_fp %>%
+  filter(Unit == '%')
+
+str(de_fp)
+unique(de_fp$Unit)
 ```
 
 食品价格指数（Food Price Index, FPI）
 数据值处理
 ```{r}
 #| message: false
+
+de_fp$Unit <- as.character(de_fp$Unit)
 
 sup_fp <- de_fp %>% 
  #补充N/A value：de_fp的Unit 列: 食品价格指数常采用拉氏指数（Laspeyres Index）计算
@@ -199,17 +212,13 @@ unique(data$item)
 #|message: false
 
 country_colours <- c(
-    "Australia"                = "#1116f7",
+    "Indonesia"                = "#008751",
     "China"                    = "#DE2910",
-    "France"                   = "#74bff4",
-    "Germany"                  = "#FFCC00",
+    "Jordan"                   = "#74bff4",
+    "Republic of Korea"        = "#FFCC00",
     "India"                    = "#b89aff",
     "Japan"                    = "#970502",
-    "Nigeria"                  = "#008751",
-    "Serbia"                   = "#6ef1e7",
-    "Singapore"                = "#ff9d66",
-    "South Africa"             = "#0c0c0e",
-    "United States of America" = "#bfd2ec")
+    "Singapore"                = "#ff9d66")
 
 country_class <- c("Developing" = "solid", 
                    "Developed" = "dashed")
@@ -217,7 +226,7 @@ country_class <- c("Developing" = "solid",
 
 画图
 ```{r}
-unique(data$item)
+unique(data$area)
 ```
 
 3.多个国家展示一个数据:
