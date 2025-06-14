@@ -18,12 +18,12 @@ Here is where you should provide the more comprehensive details about your data 
 These are the data details that an "average" blog post reader is not concerned with (Task 1).
 
 load the library
-
 ```{r}
 #| warning: false
 #| message: false
 
 library(readr)
+library(readxl)
 library(tidyverse)
 library(tidyr)
 library(dplyr)
@@ -46,6 +46,7 @@ load the data.
 rd_fq <- read_csv("data/FAOSTAT_data_5s_6-10-2025.csv")
 rd_fp <- read_csv("data/FAOSTAT_data_food_pice_6-13-2025.csv")
 rd_fp_china <- read_csv("data/china_food_cpi.csv")
+his_classif_of_regions <- read_excel("data/historical-classification-of-developed-and-developing-regions.xlsx", sheet = 2)
 ```
 
 ps: 记得参考原数据。 食品价格的数据估计得求年平均，因为他给的是每个月的。
@@ -67,6 +68,19 @@ de_fq <- rd_fq %>%
             `Element Code`, `Element`, 
             `Item Code`, `Year Code`, `Note`)) %>%
   filter(!str_detect(Year, "^\\d{4}-\\d{4}$"))   #不相符的研究时间单位
+
+his_classif_of_regions <- his_classif_of_regions %>%
+  select(c( "ISO-alpha3 Code", "Developed / Developing regions")) %>%
+  rename("area_code_iso3" = "ISO-alpha3 Code",
+         "classification" = "Developed / Developing regions") %>%
+  mutate(area_code_iso3 = ifelse(area_code_iso3 == "CHN", "F351", area_code_iso3))  #修改中国的代码使得和粮农组织的一致
+  
+```
+
+
+```{r}
+names(his_classif_of_regions)
+unique(data$area_code_iso3)
 ```
 
 食品价格指数（Food Price Index, FPI）
@@ -132,13 +146,20 @@ comp_fp <- bind_rows(sup_fp_cleaned, rd_fp_china_cleaned)
   
 data <- de_fq_cleaned %>%
   left_join(comp_fp, by = c("area_code_iso3", "year")) %>%
-  select(-c(flag_description))
+  select(-c(flag_description)) %>%
+  rename(food_price = con_p_food_indices_year)
+```
 
+输出数据集
+```{r}
+#|eval: false
+ 
+write_csv(data, "data/processed_food_data.csv")
 ```
 
 
 limitation:
-各国的核算方式随时间变化，例如中国在计算2000的数据时，并没有把“烟草”“酒”单独列出，而是包含在了食品项下面，在2001年时则将其剔除，而在2017年时，又将二者合并计数同时分别给出数值。
+各国的核算方式随时间变化，【提及粮农组织】例如中国在计算2000的数据时，并没有把“烟草”“酒”单独列出，而是包含在了食品项下面，在2001年时则将其剔除，而在2017年时，又将二者合并计数同时分别给出数值。
 
 ### Remember
 
@@ -156,12 +177,141 @@ Here is where you should write your blogpost! (Task 2)
 
 There is no strict structure for you to follow. However, here is a skeleton structure you may find helpful.
 
-1.  Title (is set at the top of this document)
-2.  Motivation\
-3.  Data\
-4.  Analysis\
-5.  Conclusions\
-6.  References
+### Title (is set at the top of this document)
+### Motivation
+### Data
+### Analysis
+
+
+
+
+```{r}
+names(data)
+unique(data$item)
+```
+画图
+1.多国家分面图
+```{r}
+# 筛选出你关心的那一项
+energy_req_data <- data %>%
+  filter(item == "Average dietary energy requirement (kcal/cap/day)")
+
+# 合并energy和food_price（假设在同一行，不需要 reshape）
+plot_er <- energy_req_data %>%
+  select(area, year, value, food_price) %>%
+  rename(energy_req = value)
+
+# 画图
+ggplot(plot_er, aes(x = year)) +
+  geom_line(aes(y = energy_req, color = "Energy Requirement")) +
+  geom_line(aes(y = food_price, color = "Food Price")) +
+  facet_wrap(~ area) +
+  labs(x = "Year", y = "Value", color = "Indicator",
+       title = "Trends of Energy Requirement and Food Price Over Time") +
+  theme_minimal()
+```
+2.双y轴画中国的图
+估算缩放数值
+```{r}
+data %>%
+  filter(area == "China",
+         item == "Average dietary energy requirement (kcal/cap/day)") %>%
+  summarise(
+    mean_energy = mean(value, na.rm = TRUE),
+    mean_price = mean(food_price, na.rm = TRUE),
+    scale_factor = mean_energy / mean_price
+  )
+```
+画图
+```{r}
+# 准备数据（只举例一个国家；多个国家建议 facet_wrap）
+plot_china_data <- data %>%
+  filter(area == "China" & 
+         item == "Average dietary energy requirement (kcal/cap/day)") %>%
+  select(year, energy_req = value, food_price)
+
+# 为了使它们在图上比例差不多，我们缩放 food_price
+# 比如乘上 20（也可以根据实际均值比例动态调整）
+ggplot(plot_china_data, aes(x = year)) +
+  geom_line(aes(y = energy_req, color = "Energy Requirement"), size = 1) +
+  geom_line(aes(y = food_price * 30, color = "Food Price (scaled)"), size = 1, linetype = "dashed") +
+  scale_y_continuous(
+    name = "Energy Requirement (kcal/cap/day)",
+    sec.axis = sec_axis(~ . / 40, name = "Food Price Index (2015 = 100)")
+  ) +
+  labs(title = "Energy Requirement vs Food Price in China",
+       x = "Year",
+       color = "Indicator") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+3.多个国家展示一个数据
+```{r}
+plot_data <- data %>%
+  filter(item == "Average dietary energy requirement (kcal/cap/day)")
+
+# 绘图
+ggplot(plot_data, aes(x = year, y = value, color = area)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Average Dietary Energy Requirement (2000–2023)",
+    x = "Year",
+    y = "kcal/cap/day",
+    color = "Country"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+
+
+### Conclusions
+
+
+
+### References
+
+National Bureau of Statistics of China. (2001). China Statistical Yearbook 2001. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2002). China Statistical Yearbook 2002. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2003). China Statistical Yearbook 2003. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2004). China Statistical Yearbook 2004. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2005). China Statistical Yearbook 2005. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2006). China Statistical Yearbook 2006. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2007). China Statistical Yearbook 2007. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2008). China Statistical Yearbook 2008. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2009). China Statistical Yearbook 2009. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2010). China Statistical Yearbook 2010. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2011). China Statistical Yearbook 2011. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2012). China Statistical Yearbook 2012. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2013). China Statistical Yearbook 2013. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2014). China Statistical Yearbook 2014. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2015). China Statistical Yearbook 2015. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2016). China Statistical Yearbook 2016. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2017). China Statistical Yearbook 2017. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2018). China Statistical Yearbook 2018. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2019). China Statistical Yearbook 2019. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2020). China Statistical Yearbook 2020. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2021). China Statistical Yearbook 2021. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2022). China Statistical Yearbook 2022. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2023). China Statistical Yearbook 2023. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+National Bureau of Statistics of China. (2024). China Statistical Yearbook 2024. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+
+✅ 说明：
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Task 3 Tab: Behind the Scenes -  -->
 
