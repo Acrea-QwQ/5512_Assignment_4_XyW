@@ -49,12 +49,8 @@ rd_fp_china <- read_csv("data/china_food_cpi.csv")
 his_classif_of_regions <- read_excel("data/historical-classification-of-developed-and-developing-regions.xlsx", sheet = 2)
 ```
 
-ps: 记得参考原数据。 食品价格的数据估计得求年平均，因为他给的是每个月的。
-
-清理数据：
 
 去除不要的
-
 ```{r}
 
 #重复的相同的值
@@ -67,7 +63,8 @@ de_fq <- rd_fq %>%
   select(-c(`Domain Code`, `Domain`, 
             `Element Code`, `Element`, 
             `Item Code`, `Year Code`, `Note`)) %>%
-  filter(!str_detect(Year, "^\\d{4}-\\d{4}$"))   #不相符的研究时间单位
+  mutate(Year = str_sub(Year, 1, 4)) %>%  #统一年份格式
+  mutate(Value = ifelse(Value == "<2.5", 2.4, Value))
 
 his_classif_of_regions <- his_classif_of_regions %>%
   select(c( "ISO-alpha3 Code", "Developed / Developing regions")) %>%
@@ -75,23 +72,6 @@ his_classif_of_regions <- his_classif_of_regions %>%
          "classification" = "Developed / Developing regions") %>%
   mutate(area_code_iso3 = ifelse(area_code_iso3 == "CHN", "F351", area_code_iso3))  #修改中国的代码使得和粮农组织的一致
   
-```
-
-
-```{r}
-names(his_classif_of_regions)
-unique(de_fq$Area)
-```
-```{r}
-#为NA的数据
-#有几行
-colSums(is.na(de_fp))#是些什么
-na_rows <- de_fp %>% filter(is.na(`Unit`))
-pre <- de_fp %>%
-  filter(Unit == '%')
-
-str(de_fp)
-unique(de_fp$Unit)
 ```
 
 食品价格指数（Food Price Index, FPI）
@@ -225,17 +205,14 @@ country_class <- c("Developing" = "solid",
 ```
 
 画图
-```{r}
-unique(data$area)
-```
 
 3.多个国家展示一个数据:
 
 Food Price
 ```{r}
 #去除Nigra这个异常值
-plot_fp_nonni <- data %>% 
-  filter(area != "Nigeria") 
+plot_fp_nonni <- data
+
 #画图
 ggplot(plot_fp_nonni, aes(x = year, 
                       y = food_price, 
@@ -303,6 +280,31 @@ plot_itmes_in_food_quality(
   y_label = "Average Requirement(unit: kcal/cap/day)")
 ```
 
+.2Average dietary energy requirement (kcal/cap/day)
+```{r}
+#数据集准备
+plot_data_aer <- data %>%
+  filter(item == "Average dietary energy requirement (kcal/cap/day)")
+
+# 绘图
+plot_itmes_in_food_quality(
+  data = plot_data_aer,
+  plot_title = "Average Dietary Energy Requirement (2000–2023)",
+  y_label = "Average Requirement(unit: kcal/cap/day)")
+```
+
+.3 Prevalence of undernourishment (percent) (3-year average)
+```{r}
+#数据集准备
+plot_data_pu <- data %>%
+  filter(item == "Prevalence of undernourishment (percent) (3-year average))")
+
+# 绘图
+plot_itmes_in_food_quality(
+  data = plot_data_pu,
+  plot_title = "Prevalence of Undernourishment (3-year average)(2000–2023)",
+  y_label = "Undernourishment(%)")
+```
 
 
 单个国家的数据
@@ -419,7 +421,13 @@ Find out the history version in my [git repository](https://github.com/Acrea-QwQ
 
 ### What's in this section
 
-补充中国的food price数据花了好久的时间，因为数据是以图片形式呈现的，无法进行抓取
+1. 补充中国的food price数据花了好久的时间，因为数据是以图片形式呈现的，无法进行抓取
+
+2.世界各地的数据看不清楚模式，所以改了只研究亚洲的
+
+3.修改了研究的变量之后，有一个prvelence的year数据是个区间。本来不想改，使用rd_fq <- rd_fq %>%
+  mutate(is_range_year = str_detect(Year, "^\\d{4}-\\d{4}$"))
+进行处理，但是因为后面需要join，所以只能统一一下。
 
 Here is where you should tell us about your reflection on your analysis (Task 3).
 
