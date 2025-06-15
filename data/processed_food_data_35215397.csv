@@ -1,0 +1,467 @@
+area_code_iso3,area,item,year,unit,value,flag,food_price,classification
+F351,China,Prevalence of undernourishment (percent) (3-year average),2000,%,10.1,E,46.51063998020403,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2001,%,9.5,E,46.51063998020403,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2002,%,8.8,E,46.231576140322815,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2003,%,8,E,47.80344972909379,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2004,%,7.1,E,52.53599125227407,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2005,%,6.1,E,54.05953499859003,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2006,%,5.1,E,55.46508290855337,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2007,%,4,E,62.28728810630543,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2008,%,3,E,71.1943703055071,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2009,%,2.4,E,71.83511963825669,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2010,%,2.4,E,77.29458873076418,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2011,%,2.4,E,86.49264478972512,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2012,%,2.4,E,90.64429173963192,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2013,%,2.4,E,94.90457345139463,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2014,%,2.4,E,97.75171065493647,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2015,%,2.4,E,100,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2016,%,2.4,E,103.90000000000002,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2017,%,2.4,E,102.44540000000002,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2018,%,2.4,E,104.28941720000002,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2019,%,2.4,E,113.88404358240003,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2020,%,2.4,E,125.95575220213442,Developing
+F351,China,Prevalence of undernourishment (percent) (3-year average),2021,%,2.4,E,124.19237167130454,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2000,kcal/cap/d,21,E,46.51063998020403,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2001,kcal/cap/d,22,E,46.51063998020403,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2002,kcal/cap/d,14,E,46.231576140322815,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2003,kcal/cap/d,11,E,47.80344972909379,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2004,kcal/cap/d,16,E,52.53599125227407,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2005,kcal/cap/d,19,E,54.05953499859003,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2006,kcal/cap/d,16,E,55.46508290855337,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2007,kcal/cap/d,19,E,62.28728810630543,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2008,kcal/cap/d,14,E,71.1943703055071,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2009,kcal/cap/d,14,E,71.83511963825669,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2010,kcal/cap/d,13,E,77.29458873076418,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2011,kcal/cap/d,24,E,86.49264478972512,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2012,kcal/cap/d,28,E,90.64429173963192,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2013,kcal/cap/d,21,E,94.90457345139463,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2014,kcal/cap/d,25,E,97.75171065493647,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2015,kcal/cap/d,25,E,100,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2016,kcal/cap/d,28,E,103.90000000000002,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2017,kcal/cap/d,28,E,102.44540000000002,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2018,kcal/cap/d,29,E,104.28941720000002,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2019,kcal/cap/d,27,E,113.88404358240003,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2020,kcal/cap/d,24,E,125.95575220213442,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2021,kcal/cap/d,12,E,124.19237167130454,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2022,kcal/cap/d,21,E,127.66975807810107,Developing
+F351,China,Per capita food supply variability (kcal/cap/day),2023,kcal/cap/d,22,E,127.28674880386677,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2419,E,46.51063998020403,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2427,E,46.51063998020403,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2435,E,46.231576140322815,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2442,E,47.80344972909379,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2448,E,52.53599125227407,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2453,E,54.05953499859003,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2456,E,55.46508290855337,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2457,E,62.28728810630543,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2457,E,71.1943703055071,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2456,E,71.83511963825669,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2455,E,77.29458873076418,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2453,E,86.49264478972512,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2450,E,90.64429173963192,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2446,E,94.90457345139463,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2443,E,97.75171065493647,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2441,E,100,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2438,E,103.90000000000002,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2435,E,102.44540000000002,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2434,E,104.28941720000002,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2436,E,113.88404358240003,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2440,E,125.95575220213442,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2447,E,124.19237167130454,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2453,E,127.66975807810107,Developing
+F351,China,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2457,E,127.28674880386677,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2000,%,18.3,E,38.74011591666667,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2001,%,19.9,E,40.08946183333333,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2002,%,21.5,E,41.677640583333336,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2003,%,22,E,43.140101083333334,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2004,%,21.4,E,44.63825608333333,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2005,%,19.2,E,46.38532541666667,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2006,%,16.8,E,48.86174333333334,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2007,%,15.6,E,51.73007175,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2008,%,15.3,E,55.70367341666667,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2009,%,14.8,E,61.27483975,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2010,%,14.3,E,68.03146541666666,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2011,%,13.5,E,71.97082033333334,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2012,%,12.9,E,78.63889725,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2013,%,12.6,E,88.75530375,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2014,%,12.2,E,95.04458716666666,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2015,%,11.5,E,100.04074633333333,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2016,%,10.5,E,105.38304508333333,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2017,%,10.3,E,107.296607,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2018,%,11.6,E,109.08608091666666,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2019,%,13.1,E,112.99157541666666,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2020,%,14,E,122.85327591666666,Developing
+IND,India,Prevalence of undernourishment (percent) (3-year average),2021,%,13.7,E,127.353085,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2000,kcal/cap/d,49,E,38.74011591666667,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2001,kcal/cap/d,35,E,40.08946183333333,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2002,kcal/cap/d,25,E,41.677640583333336,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2003,kcal/cap/d,42,E,43.140101083333334,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2004,kcal/cap/d,52,E,44.63825608333333,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2005,kcal/cap/d,52,E,46.38532541666667,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2006,kcal/cap/d,35,E,48.86174333333334,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2007,kcal/cap/d,23,E,51.73007175,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2008,kcal/cap/d,42,E,55.70367341666667,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2009,kcal/cap/d,53,E,61.27483975,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2010,kcal/cap/d,44,E,68.03146541666666,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2011,kcal/cap/d,24,E,71.97082033333334,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2012,kcal/cap/d,17,E,78.63889725,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2013,kcal/cap/d,19,E,88.75530375,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2014,kcal/cap/d,10,E,95.04458716666666,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2015,kcal/cap/d,11,E,100.04074633333333,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2016,kcal/cap/d,20,E,105.38304508333333,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2017,kcal/cap/d,18,E,107.296607,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2018,kcal/cap/d,20,E,109.08608091666666,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2019,kcal/cap/d,21,E,112.99157541666666,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2020,kcal/cap/d,20,E,122.85327591666666,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2021,kcal/cap/d,12,E,127.353085,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2022,kcal/cap/d,15,E,135.77798141666668,Developing
+IND,India,Per capita food supply variability (kcal/cap/day),2023,kcal/cap/d,11,E,144.99312,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2216,E,38.74011591666667,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2223,E,40.08946183333333,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2230,E,41.677640583333336,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2237,E,43.140101083333334,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2244,E,44.63825608333333,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2251,E,46.38532541666667,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2259,E,48.86174333333334,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2264,E,51.73007175,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2269,E,55.70367341666667,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2274,E,61.27483975,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2279,E,68.03146541666666,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2283,E,71.97082033333334,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2288,E,78.63889725,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2293,E,88.75530375,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2298,E,95.04458716666666,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2303,E,100.04074633333333,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2307,E,105.38304508333333,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2312,E,107.296607,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2316,E,109.08608091666666,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2320,E,112.99157541666666,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2325,E,122.85327591666666,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2329,E,127.353085,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2333,E,135.77798141666668,Developing
+IND,India,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2336,E,144.99312,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2000,%,18.2,E,27.470612333333335,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2001,%,18.2,E,29.786212583333334,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2002,%,18,E,33.01067341666666,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2003,%,18.2,E,33.36866916666666,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2004,%,18.4,E,35.334553666666665,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2005,%,18.2,E,38.97412308333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2006,%,17.6,E,44.76209191666666,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2007,%,16.5,E,49.663554166666664,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2008,%,15.1,E,58.087874,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2009,%,13.1,E,62.143799,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2010,%,11.3,E,67.99922783333334,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2011,%,9.8,E,73.80996283333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2012,%,8.5,E,78.13159108333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2013,%,8,E,87.3687765,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2014,%,7.3,E,93.32558108333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2015,%,6.7,E,100.0214585,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2016,%,6,E,107.26165258333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2017,%,5.9,E,109.30609583333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2018,%,6.2,E,113.7726185,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2019,%,6.3,E,115.41338191666667,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2020,%,6.8,E,121.03044083333333,Developing
+IDN,Indonesia,Prevalence of undernourishment (percent) (3-year average),2021,%,7.2,E,124.4621805,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2000,kcal/cap/d,31,E,27.470612333333335,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2001,kcal/cap/d,11,E,29.786212583333334,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2002,kcal/cap/d,12,E,33.01067341666666,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2003,kcal/cap/d,11,E,33.36866916666666,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2004,kcal/cap/d,12,E,35.334553666666665,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2005,kcal/cap/d,12,E,38.97412308333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2006,kcal/cap/d,17,E,44.76209191666666,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2007,kcal/cap/d,23,E,49.663554166666664,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2008,kcal/cap/d,23,E,58.087874,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2009,kcal/cap/d,17,E,62.143799,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2010,kcal/cap/d,9,E,67.99922783333334,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2011,kcal/cap/d,13,E,73.80996283333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2012,kcal/cap/d,13,E,78.13159108333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2013,kcal/cap/d,12,E,87.3687765,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2014,kcal/cap/d,12,E,93.32558108333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2015,kcal/cap/d,23,E,100.0214585,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2016,kcal/cap/d,21,E,107.26165258333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2017,kcal/cap/d,29,E,109.30609583333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2018,kcal/cap/d,47,E,113.7726185,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2019,kcal/cap/d,42,E,115.41338191666667,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2020,kcal/cap/d,43,E,121.03044083333333,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2021,kcal/cap/d,33,E,124.4621805,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2022,kcal/cap/d,35,E,131.90393633333332,Developing
+IDN,Indonesia,Per capita food supply variability (kcal/cap/day),2023,kcal/cap/d,28,E,138.34081791666668,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2268,E,27.470612333333335,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2271,E,29.786212583333334,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2275,E,33.01067341666666,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2278,E,33.36866916666666,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2281,E,35.334553666666665,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2284,E,38.97412308333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2286,E,44.76209191666666,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2288,E,49.663554166666664,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2289,E,58.087874,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2291,E,62.143799,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2292,E,67.99922783333334,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2294,E,73.80996283333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2294,E,78.13159108333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2295,E,87.3687765,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2297,E,93.32558108333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2299,E,100.0214585,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2301,E,107.26165258333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2303,E,109.30609583333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2305,E,113.7726185,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2308,E,115.41338191666667,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2311,E,121.03044083333333,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2314,E,124.4621805,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2316,E,131.90393633333332,Developing
+IDN,Indonesia,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2319,E,138.34081791666668,Developing
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2000,%,2.4,E,91.54371499999999,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2001,%,2.4,E,90.96524166666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2002,%,2.4,E,89.953845,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2003,%,2.4,E,89.8153375,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2004,%,2.4,E,90.82913416666666,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2005,%,2.4,E,89.64082916666666,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2006,%,2.4,E,90.13061166666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2007,%,2.4,E,90.49856583333333,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2008,%,3,E,93.15840416666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2009,%,3.2,E,93.20231916666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2010,%,2.9,E,92.96769,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2011,%,2.6,E,92.59031333333333,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2012,%,2.4,E,92.78598416666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2013,%,2.5,E,92.61006083333334,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2014,%,2.7,E,96.57162166666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2015,%,2.7,E,100,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2016,%,2.7,E,102.08935833333334,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2017,%,2.6,E,102.79415,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2018,%,2.8,E,104.47415833333334,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2019,%,2.9,E,104.66611666666667,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2020,%,3.2,E,105.965425,Developed
+JPN,Japan,Prevalence of undernourishment (percent) (3-year average),2021,%,3.4,E,105.92018333333333,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2000,kcal/cap/d,23,E,91.54371499999999,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2001,kcal/cap/d,15,E,90.96524166666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2002,kcal/cap/d,16,E,89.953845,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2003,kcal/cap/d,16,E,89.8153375,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2004,kcal/cap/d,10,E,90.82913416666666,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2005,kcal/cap/d,9,E,89.64082916666666,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2006,kcal/cap/d,11,E,90.13061166666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2007,kcal/cap/d,15,E,90.49856583333333,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2008,kcal/cap/d,20,E,93.15840416666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2009,kcal/cap/d,29,E,93.20231916666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2010,kcal/cap/d,46,E,92.96769,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2011,kcal/cap/d,47,E,92.59031333333333,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2012,kcal/cap/d,47,E,92.78598416666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2013,kcal/cap/d,32,E,92.61006083333334,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2014,kcal/cap/d,43,E,96.57162166666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2015,kcal/cap/d,40,E,100,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2016,kcal/cap/d,28,E,102.08935833333334,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2017,kcal/cap/d,8,E,102.79415,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2018,kcal/cap/d,10,E,104.47415833333334,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2019,kcal/cap/d,11,E,104.66611666666667,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2020,kcal/cap/d,25,E,105.965425,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2021,kcal/cap/d,26,E,105.92018333333333,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2022,kcal/cap/d,27,E,111.15774008333334,Developed
+JPN,Japan,Per capita food supply variability (kcal/cap/day),2023,kcal/cap/d,26,E,120.11502333333334,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2441,E,91.54371499999999,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2439,E,90.96524166666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2437,E,89.953845,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2435,E,89.8153375,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2434,E,90.82913416666666,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2433,E,89.64082916666666,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2432,E,90.13061166666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2430,E,90.49856583333333,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2427,E,93.15840416666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2424,E,93.20231916666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2422,E,92.96769,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2420,E,92.59031333333333,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2419,E,92.78598416666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2418,E,92.61006083333334,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2418,E,96.57162166666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2418,E,100,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2418,E,102.08935833333334,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2418,E,102.79415,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2419,E,104.47415833333334,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2420,E,104.66611666666667,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2422,E,105.965425,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2423,E,105.92018333333333,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2424,E,111.15774008333334,Developed
+JPN,Japan,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2425,E,120.11502333333334,Developed
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2000,%,8.9,E,49.86105716666667,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2001,%,7,E,51.08901816666667,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2002,%,5.9,E,52.29618908333333,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2003,%,5.3,E,53.247545,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2004,%,5.2,E,55.698563166666666,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2005,%,5.5,E,58.434487833333336,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2006,%,5.9,E,62.224483,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2007,%,6.4,E,68.15330708333333,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2008,%,6.3,E,81.64077383333333,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2009,%,6.2,E,83.02576225,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2010,%,6.1,E,86.78491825,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2011,%,6.3,E,90.450025,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2012,%,6.3,E,94.57324,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2013,%,6.5,E,98.57613225,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2014,%,7,E,98.892837,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2015,%,7.8,E,100.0046375,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2016,%,9.1,E,96.52760283333333,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2017,%,10.7,E,96.131541,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2018,%,13.1,E,99.23940025,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2019,%,15.8,E,99.51465258333333,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2020,%,17.3,E,101.82909391666666,Developing
+JOR,Jordan,Prevalence of undernourishment (percent) (3-year average),2021,%,17.9,E,101.92889708333334,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2000,kcal/cap/d,83,E,49.86105716666667,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2001,kcal/cap/d,77,E,51.08901816666667,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2002,kcal/cap/d,72,E,52.29618908333333,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2003,kcal/cap/d,57,E,53.247545,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2004,kcal/cap/d,88,E,55.698563166666666,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2005,kcal/cap/d,87,E,58.434487833333336,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2006,kcal/cap/d,61,E,62.224483,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2007,kcal/cap/d,37,E,68.15330708333333,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2008,kcal/cap/d,28,E,81.64077383333333,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2009,kcal/cap/d,52,E,83.02576225,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2010,kcal/cap/d,51,E,86.78491825,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2011,kcal/cap/d,46,E,90.450025,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2012,kcal/cap/d,32,E,94.57324,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2013,kcal/cap/d,32,E,98.57613225,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2014,kcal/cap/d,28,E,98.892837,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2015,kcal/cap/d,22,E,100.0046375,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2016,kcal/cap/d,23,E,96.52760283333333,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2017,kcal/cap/d,13,E,96.131541,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2018,kcal/cap/d,17,E,99.23940025,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2019,kcal/cap/d,37,E,99.51465258333333,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2020,kcal/cap/d,46,E,101.82909391666666,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2021,kcal/cap/d,37,E,101.92889708333334,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2022,kcal/cap/d,26,E,105.32885075,Developing
+JOR,Jordan,Per capita food supply variability (kcal/cap/day),2023,kcal/cap/d,37,E,105.94117825000001,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2254,E,49.86105716666667,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2259,E,51.08901816666667,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2265,E,52.29618908333333,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2271,E,53.247545,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2278,E,55.698563166666666,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2285,E,58.434487833333336,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2291,E,62.224483,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2297,E,68.15330708333333,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2296,E,81.64077383333333,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2296,E,83.02576225,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2303,E,86.78491825,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2307,E,90.450025,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2312,E,94.57324,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2317,E,98.57613225,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2323,E,98.892837,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2328,E,100.0046375,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2334,E,96.52760283333333,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2339,E,96.131541,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2345,E,99.23940025,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2350,E,99.51465258333333,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2355,E,101.82909391666666,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2361,E,101.92889708333334,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2366,E,105.32885075,Developing
+JOR,Jordan,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2371,E,105.94117825000001,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2000,%,2.4,E,54.401095166666664,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2001,%,2.6,E,57.175155583333336,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2002,%,2.6,E,59.926593249999996,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2003,%,2.4,E,62.713431916666664,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2004,%,2.4,E,67.77653925,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2005,%,2.4,E,69.881198,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2006,%,2.4,E,70.24827075,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2007,%,2.4,E,72.00705925,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2008,%,2.4,E,75.57167983333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2009,%,2.4,E,81.29708983333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2010,%,2.4,E,86.50984691666667,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2011,%,2.4,E,93.55323591666667,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2012,%,2.4,E,97.25879808333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2013,%,2.4,E,98.09299466666667,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2014,%,2.4,E,98.37979983333334,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2015,%,2.4,E,100.00247408333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2016,%,2.4,E,102.31007358333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2017,%,2.4,E,105.78704341666666,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2018,%,2.4,E,108.72107108333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2019,%,2.4,E,108.77275266666666,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2020,%,2.4,E,113.58625433333333,Developing
+KOR,Republic of Korea,Prevalence of undernourishment (percent) (3-year average),2021,%,2.4,E,120.27175174999999,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2000,kcal/cap/d,43,E,54.401095166666664,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2001,kcal/cap/d,42,E,57.175155583333336,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2002,kcal/cap/d,42,E,59.926593249999996,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2003,kcal/cap/d,40,E,62.713431916666664,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2004,kcal/cap/d,47,E,67.77653925,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2005,kcal/cap/d,41,E,69.881198,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2006,kcal/cap/d,27,E,70.24827075,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2007,kcal/cap/d,28,E,72.00705925,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2008,kcal/cap/d,41,E,75.57167983333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2009,kcal/cap/d,44,E,81.29708983333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2010,kcal/cap/d,43,E,86.50984691666667,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2011,kcal/cap/d,42,E,93.55323591666667,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2012,kcal/cap/d,30,E,97.25879808333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2013,kcal/cap/d,37,E,98.09299466666667,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2014,kcal/cap/d,51,E,98.37979983333334,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2015,kcal/cap/d,53,E,100.00247408333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2016,kcal/cap/d,42,E,102.31007358333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2017,kcal/cap/d,21,E,105.78704341666666,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2018,kcal/cap/d,17,E,108.72107108333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2019,kcal/cap/d,18,E,108.77275266666666,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2020,kcal/cap/d,16,E,113.58625433333333,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2021,kcal/cap/d,15,E,120.27175174999999,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2022,kcal/cap/d,10,E,127.38698425,Developing
+KOR,Republic of Korea,Per capita food supply variability (kcal/cap/day),2023,kcal/cap/d,20,E,134.35644741666667,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2414,E,54.401095166666664,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2416,E,57.175155583333336,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2419,E,59.926593249999996,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2424,E,62.713431916666664,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2430,E,67.77653925,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2436,E,69.881198,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2442,E,70.24827075,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2448,E,72.00705925,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2452,E,75.57167983333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2456,E,81.29708983333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2459,E,86.50984691666667,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2462,E,93.55323591666667,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2465,E,97.25879808333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2467,E,98.09299466666667,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2468,E,98.37979983333334,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2469,E,100.00247408333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2469,E,102.31007358333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2468,E,105.78704341666666,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2468,E,108.72107108333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2469,E,108.77275266666666,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2469,E,113.58625433333333,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2469,E,120.27175174999999,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2469,E,127.38698425,Developing
+KOR,Republic of Korea,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2469,E,134.35644741666667,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2000,%,NA,O,71.48071041666667,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2001,%,NA,O,72.39810025,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2002,%,NA,O,72.03421675,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2003,%,NA,O,72.44891825,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2004,%,NA,O,73.91568025,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2005,%,NA,O,72.3939395,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2006,%,NA,O,73.81223841666667,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2007,%,NA,O,76.79215275,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2008,%,NA,O,84.25423516666666,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2009,%,NA,O,86.37982591666666,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2010,%,NA,O,88.3979295,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2011,%,NA,O,91.54548841666667,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2012,%,NA,O,93.78511291666666,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2013,%,NA,O,95.95555633333333,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2014,%,NA,O,98.79082725,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2015,%,NA,O,100.00087566666667,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2016,%,NA,O,102.30233824999999,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2017,%,NA,O,103.62022741666667,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2018,%,NA,O,104.96085283333333,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2019,%,NA,O,106.16010825,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2020,%,NA,O,109.236982,Developing
+SGP,Singapore,Prevalence of undernourishment (percent) (3-year average),2021,%,NA,O,110.98570416666666,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2000,kcal/cap/d,2445,E,71.48071041666667,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2001,kcal/cap/d,2447,E,72.39810025,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2002,kcal/cap/d,2449,E,72.03421675,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2003,kcal/cap/d,2452,E,72.44891825,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2004,kcal/cap/d,2458,E,73.91568025,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2005,kcal/cap/d,2466,E,72.3939395,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2006,kcal/cap/d,2473,E,73.81223841666667,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2007,kcal/cap/d,2480,E,76.79215275,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2008,kcal/cap/d,2488,E,84.25423516666666,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2009,kcal/cap/d,2496,E,86.37982591666666,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2010,kcal/cap/d,2502,E,88.3979295,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2011,kcal/cap/d,2504,E,91.54548841666667,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2012,kcal/cap/d,2503,E,93.78511291666666,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2013,kcal/cap/d,2503,E,95.95555633333333,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2014,kcal/cap/d,2506,E,98.79082725,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2015,kcal/cap/d,2506,E,100.00087566666667,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2016,kcal/cap/d,2502,E,102.30233824999999,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2017,kcal/cap/d,2499,E,103.62022741666667,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2018,kcal/cap/d,2495,E,104.96085283333333,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2019,kcal/cap/d,2490,E,106.16010825,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2020,kcal/cap/d,2486,E,109.236982,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2021,kcal/cap/d,2484,E,110.98570416666666,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2022,kcal/cap/d,2482,E,116.86918583333333,Developing
+SGP,Singapore,Average dietary energy requirement (kcal/cap/day),2023,kcal/cap/d,2479,E,122.88023666666666,Developing
