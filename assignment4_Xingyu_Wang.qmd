@@ -76,6 +76,10 @@ library(knitr)
 library(kableExtra)
 ```
 
+```{r}
+names(data)
+```
+
 Read the data.
 
 ```{r}
@@ -291,7 +295,7 @@ ggplot(plot_fp_nonni, aes(x = year, y = food_price,
   labs(title = "Food Price (2000–2023)",
        x = "Year",
        y = "Laspeyres Index(unitless)",
-       caption = "Source: UN (2022); FAO (2025), China Statistical Yearbook", 
+       caption = "Source: UN (2022); FAO (2024), China Statistical Yearbook", 
        color = "Country",
        linetype = "Classification") +
   scale_color_manual(values = country_colours) +
@@ -318,7 +322,7 @@ plot_itmes_in_food_quality <- function(data, plot_title, y_label) {
     labs(title = plot_title,
          x = "Year",
          y = y_label,
-         caption = "Source: UN (2022); FAO (2025)", 
+         caption = "Source: UN (2022); FAO (2024)", 
          color = "Country",
          linetype = "Classification") +
     scale_color_manual(values = country_colours) +
