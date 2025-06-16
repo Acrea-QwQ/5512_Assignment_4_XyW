@@ -1,5 +1,5 @@
 ---
-title: "Which Asian country has the most expensive diet over time? Is it increasingly worth what they eat?"
+title: "Which Asian country has the most expensive diet over time? Is it increasingly worth what they eat?– A seven-country comparative analysis"
 subtitle: "Assignment 4 ETC5512"
 author: "Xingyu Wang"
 format: html
@@ -11,16 +11,58 @@ editor: visual
 
 ## Data and Documenting
 
-### What's in this section
+### Question to answer
 
-Here is where you should provide the more comprehensive details about your data and your processing steps.
+As an international student abroad who cooks but can never quite recreate the flavors of home, I often find myself missing my mom’s cooking. Living far from home, I began to wonder: do people around the world really get what they pay for when it comes to food? That question inspired my research: Which of seven Asian countries has the most expensive diet—and is it increasingly worth what they eat?
 
-These are the data details that an "average" blog post reader is not concerned with (Task 1).
+### Datasets I chose and why
 
-load the library
+To answer my question, I use data mainly from the **FAO and United Nations**, as these international organizations provide reliable and standardized national-level indicators, essential for cross-country comparisons.
+
+I focus on **four key variables**:
+
+-   Consumer Food Price Index (2015 = 100) – measures how expensive food is over time in each country.
+
+-   Prevalence of undernourishment (%)
+
+-   Per capita food supply variability (kcal/cap/day)
+
+-   Average dietary energy requirement (kcal/cap/day)
+
+The last three capture different aspects of food adequacy and stability, allowing me to assess whether expensive diets are actually “worth it.”
+
+Together, these indicators offer a multidimensional view: not only how much people pay for food, but whether they get enough of it, consistently, and in line with their nutritional needs.
+
+### Steps to download the data
+
+1. Food quality data 
+-   Navigate to this [FAO database page](https://www.fao.org/faostat/en/#data/FS) about Food Security. 
+-   Apply filters for countries: "China", "India", "Indonesia", "Japan", "Jordan", "Republic of Korea" and "Singapore"; elements: Value; items: "Prevalence of undernourishment (percent) (3-year average)", "Per capita food supply variability (kcal/cap/day)" and "Average dietary energy requirement (kcal/cap/day)"; years: Select All; 
+-   Click "View" to display the data, then select "Download" to save it in CSV format.
+
+2.  Food price data
+
+-   Navigate to this [FAO database page](https://www.fao.org/faostat/en/#data/CP) about Food Price.
+-   Apply filters for countries: "China", "India", "Indonesia", "Japan", "Jordan", "Republic of Korea" and "Singapore"; years: Select All; items: Consumer Price, Food Indices(2015 = 100); month: Select All
+-   Click "View" to display the data, then select "Download" to save it in CSV format.
+
+3.  Food price data for China This data is missing from the FAO database. To obtain it, I manually collected the data by consulting the [China Statistical Yearbook](https://www.stats.gov.cn/english/Statisticaldata/yearbook/) from 2001 to 2024. I had hoped to use web scraping techniques to improve efficiency, but unfortunately, the yearbook does not have an online version with a structured webpage. Instead, the data is presented as images, making manual lookup the only feasible way to gather this important data.
+
+4.Classification data of developing and developed countries Use this [URL](https://unstats.un.org/unsd/methodology/m49/historical-classification-of-developed-and-developing-regions.xlsx).
+
+### Term of Use
+
+-   The data downloaded from FAO and UN for this assignment (Datasets 1, 2, and 4) are all available under [the Creative Commons Attribution 4.0 International (CC BY 4.0) license](https://creativecommons.org/licenses/by/4.0/), which permits users to: ○ Share, adapt, and use the data for any purpose including commercial use as long as proper attribution is made.
+
+-   The food price data for China sourced from existing literature has been properly attributed through citations to their respective editions of the China Statistical Yearbook in the reference list.
+
+### Data processing
+
+load the library.
+
 ```{r}
 #| warning: false
-#| message: false
+#| message: false 
 
 library(readr)
 library(readxl)
@@ -30,14 +72,11 @@ library(dplyr)
 library(stringr)
 library(janitor)
 library(ggplot2)
+library(knitr)
+library(kableExtra)
 ```
 
-Steps to download the data【需改】 
-Navigate to the FAOSTAT home page. ● Click on the "Data" tab or "Explore Data" to browse available datasets. ● Select a domain (e.g., "Production") and a subsection (e.g., "Crops and livestock products"). ● Apply filters for specific countries, years, or commodities. ● Click "View" to display the data, then select "Download" to save it in formats like CSV or Excel.
-
-License: Data is available under [the Creative Commons Attribution 4.0 International (CC BY 4.0) license](https://creativecommons.org/licenses/by/4.0/), which permits users to: ○ Share, adapt, and use the data for any purpose including commercial use as long as proper attribution is made.
-
-load the data.
+Read the data.
 
 ```{r}
 #| warning: false
@@ -49,11 +88,11 @@ rd_fp_china <- read_csv("data/china_food_cpi.csv")
 his_classif_of_regions <- read_excel("data/historical-classification-of-developed-and-developing-regions.xlsx", sheet = 2)
 ```
 
+Keep only relevant variables.
 
-去除不要的
 ```{r}
 
-#重复的相同的值
+# Remove columns with identical values
 de_fp <- rd_fp %>%
   select(-c(`Domain Code`, `Domain`, 
             `Element Code`, `Element`, 
@@ -63,35 +102,36 @@ de_fq <- rd_fq %>%
   select(-c(`Domain Code`, `Domain`, 
             `Element Code`, `Element`, 
             `Item Code`, `Year Code`, `Note`)) %>%
-  mutate(Year = str_sub(Year, 1, 4)) %>%  #统一年份格式
+  mutate(Year = str_sub(Year, 1, 4)) %>%       #S tandardize the format of the year column
   mutate(Value = ifelse(Value == "<2.5", 2.4, Value))
 
 his_classif_of_regions <- his_classif_of_regions %>%
   select(c( "ISO-alpha3 Code", "Developed / Developing regions")) %>%
   rename("area_code_iso3" = "ISO-alpha3 Code",
          "classification" = "Developed / Developing regions") %>%
-  mutate(area_code_iso3 = ifelse(area_code_iso3 == "CHN", "F351", area_code_iso3))  #修改中国的代码使得和粮农组织的一致
-  
+# Update China's country code to align with FAO conventions
+  mutate(area_code_iso3 = ifelse(area_code_iso3 == "CHN", "F351", area_code_iso3))  
 ```
 
-食品价格指数（Food Price Index, FPI）
-数据值处理
+Process food price data.
+
 ```{r}
 #| message: false
 
 de_fp$Unit <- as.character(de_fp$Unit)
 
 sup_fp <- de_fp %>% 
- #补充N/A value：de_fp的Unit 列: 食品价格指数常采用拉氏指数（Laspeyres Index）计算
+ # Fill in missing 'Unit' values with "Laspeyres Index"
+ # (commonly used for food price indices; dimensionless, unit-free)
   replace_na(list(Unit = "laspeyres_index")) %>%
- # 计算每国每年的食品价格指数的平均值
+ # Calculate the arithmetic mean of food price indices by country and year
   filter(Unit == "laspeyres_index") %>%  
   group_by(`Area Code (ISO3)`, Year) %>%       
   summarise(con_p_food_indices_year = mean(Value, na.rm = TRUE)) %>%  
   ungroup()
 ```
 
-处理中国的数据基年
+Handle missing values: Adjust China's data so that the base year is 2015.
 
 ```{r}
 
@@ -103,22 +143,22 @@ rd_fp_china_2015 <- rd_fp_china %>%
   mutate(
     con_p_food_indices_year = {
       base_index <- which(year == 2015)   # Find the position of the base year (2015)
-      index_vals <- numeric(n())   # Create a vector to store the new index values
-      index_vals[base_index] <- 100      # Set 2015 as 100
-    # Backward calculation (e.g., 2000–2014)
+      index_vals <- numeric(n())          # Create a vector to store the new index values
+      index_vals[base_index] <- 100       # Set 2015 as 100
+    # Backward calculation (2000–2014)
       if (base_index > 1) {
         for (i in (base_index - 1):1) {
           index_vals[i] <- index_vals[i + 1] / (cpi_food_numeric[i + 1] / 100)}}
-    # Forward calculation (e.g., 2016–)
+    # Forward calculation (2016–)
       if (base_index < n()) {
         for (i in (base_index + 1):n()) {
           index_vals[i] <- index_vals[i - 1] * (cpi_food_numeric[i] / 100)}}
-      index_vals}) # Return the full vector
+      index_vals})                        # Return the full vector
 
 ```
 
+Clean variable names and convert data types as needed.
 
-清洁数据名字以及数据类型
 ```{r}
 de_fq_cleaned <- de_fq %>%
   clean_names() %>%
@@ -133,7 +173,8 @@ rd_fp_china_cleaned <- rd_fp_china_2015 %>%
   clean_names()
 ```
 
-合并数据集
+Merge datasets.
+
 ```{r}
 comp_fp <- bind_rows(sup_fp_cleaned, rd_fp_china_cleaned)
   
@@ -146,50 +187,82 @@ data <- de_fq_cleaned %>%
 data$classification <- as.factor(data$classification)
 ```
 
-输出数据集
+Export the processed dataset.
+
 ```{r}
-#|eval: false
- 
-write_csv(data, "data/processed_food_data.csv")
+readr::write_csv(data, "data/processed_food_data_35215397.csv")
 ```
 
+### More details about my dataset
 
-limitation:
-各国的核算方式随时间变化，【提及粮农组织】例如中国在计算2000的数据时，并没有把“烟草”“酒”单独列出，而是包含在了食品项下面，在2001年时则将其剔除，而在2017年时，又将二者合并计数同时分别给出数值。
-
-### Remember
-
-Please mention any additional files that you want the markers to review, eg. read me, meta data etc.
+For more details like data limitations, data privacy please reference to readme and the data dictionary. They are also available from my [github repository](https://github.com/Acrea-QwQ/5512_Assignment_4_XyW.git) for this assignment.
 
 <!-- Task 2 Tab: Writing your blogpost -->
 
-## Blog post
+## Blog Post
 
-### What's in this section
+**Which Asian country has the most expensive diet over time? Is it increasingly worth what they eat?– A seven-country comparative analysis**
 
-Here is where you should write your blogpost! (Task 2)
-
-### Blogpost Structure
-
-There is no strict structure for you to follow. However, here is a skeleton structure you may find helpful.
-
-### Title (is set at the top of this document)
 ### Motivation
+
+As an international student abroad who cooks but can never quite recreate the flavors of home, I often find myself missing my mom’s cooking. Living far from home, I began to wonder: do people around the world really get what they pay for when it comes to food? That question inspired my research: Which of seven Asian countries has the most expensive diet—and is it increasingly worth what they eat?
+
 ### Data
+
+Below, let's use two tables to gain an overview of the dataset’s structure and characteristics.
+
+```{r}
+#| wanring: false
+#| message: false
+#| echo: false
+
+# Five-number Summary and Average Food Price by Country and Item Table
+data %>%
+  filter(!is.na(value)) %>%
+  group_by(area, item) %>%
+  summarise(
+    n_years = n_distinct(year),
+    min = round(min(value, na.rm = TRUE), 2),
+    q1 = round(quantile(value, 0.25, na.rm = TRUE), 2),
+    median = round(median(value, na.rm = TRUE), 2),
+    q3 = round(quantile(value, 0.75, na.rm = TRUE), 2),
+    max = round(max(value, na.rm = TRUE), 2),
+    avg_food_price = round(mean(food_price, na.rm = TRUE), 2),
+    .groups = "drop"
+  ) %>%
+  mutate(across(everything(), ~cell_spec(., extra_css = "line-height: 2;"))) %>%
+  kbl(
+    escape = FALSE,
+    caption = "Five-number Summary and Average Food Price by Country and Item"
+  ) %>%
+  kable_styling(full_width = FALSE, font_size = 13)
+
+```
+
+```{r}
+#| wanring: false
+#| message: false
+#| echo: false
+
+# Summary of Missing Values by Country and Item Table
+data %>%
+  filter(is.na(value)) %>%
+  count(area, item, name = "missing_count") %>%
+  arrange(desc(missing_count)) %>%
+  kbl(col.names = c("Country", "Item", "Missing Count"),
+      caption = "Summary of Missing Values by Country and Item") %>%
+  kable_styling()
+```
+From the tables we can see that food price indices mostly range between 30 and 70, while median dietary energy requirements remain around 2400 kcal. Singapore has missing values in certain years, which should be noted during analysis.
+
+
 ### Analysis
 
-
-
+Here, I will use data visualization to illustrate the trends of food prices and food quality over time, followed by an interpretation of the figures.
 
 ```{r}
-names(data)
-unique(data$item)
-```
-画图
-
-准备工作：
-```{r}
-#|message: false
+#| message: false
+#| echo: false
 
 country_colours <- c(
     "Indonesia"                = "#008751",
@@ -204,45 +277,48 @@ country_class <- c("Developing" = "solid",
                    "Developed" = "dashed")
 ```
 
-画图
+#### 1. Food Price
 
-3.多个国家展示一个数据:
-
-Food Price
 ```{r}
-#去除Nigra这个异常值
+#| echo: false
+
 plot_fp_nonni <- data
 
-#画图
-ggplot(plot_fp_nonni, aes(x = year, 
-                      y = food_price, 
-                      color = area, 
-                      linetype = classification)) +
-  geom_line(size = 1) +
-  labs(
-    title = "Food Price (2000–2023)",
-    x = "Year",
-    y = "Laspeyres Index(unitless)",
-    color = "Country",
-    linetype = "Classification"
-  ) +
+ggplot(plot_fp_nonni, aes(x = year, y = food_price, 
+                          color = area, 
+                          linetype = classification)) +
+  geom_line(linewidth = 1) +
+  labs(title = "Food Price (2000–2023)",
+       x = "Year",
+       y = "Laspeyres Index(unitless)",
+       caption = "Source: UN (2022); FAO (2025), China Statistical Yearbook", 
+       color = "Country",
+       linetype = "Classification") +
   scale_color_manual(values = country_colours) +
   scale_linetype_manual(values = country_class) +
   theme_minimal() +
-  theme(
-    legend.position = "right",
-    legend.key.width = unit(1, "cm"), 
-    plot.title = element_text(hjust = 0.5)
-  )
+  theme(legend.position = "right",
+        legend.key.width = unit(1, "cm"), 
+        plot.title = element_text(hjust = 0.5))
 ```
-不同维度的指标方程式化：
+
+The food price index from 2000 to 2023 reveals two distinct phases when using 2015 as a reference point. Before 2015, most Asian countries experienced a steady rise in food prices, gradually converging toward the 2015 baseline. After 2015, the trend becomes more scattered—some countries like India and Indonesia experienced rapid increases, while others like Japan and Singapore remained relatively stable.Notably, Jordan showed a rare decline in food prices around 2015–2017, diverging from the general upward trend.
+
+I also find a interesting insight which treating 2015 as a pivot: before 2015, "100" represented a target level being approached; after 2015, it became a benchmark some countries exceeded significantly. This dual perspective highlights not only who pays more for food, but also when and how that burden increased. It adds temporal depth to the question of affordability and reveals that rising prices are not uniformly distributed nor equally justified across countries.
+
+#### 2. Food Quality
+
 ```{r}
+#| echo: false
+
+# I wrote a function to plot line charts for different items.
 plot_itmes_in_food_quality <- function(data, plot_title, y_label) {
   ggplot(data, aes(x = year, y = value, color = area, linetype = classification)) +
-    geom_line(size = 1) +
+    geom_line(linewidth = 1) +
     labs(title = plot_title,
          x = "Year",
          y = y_label,
+         caption = "Source: UN (2022); FAO (2025)", 
          color = "Country",
          linetype = "Classification") +
     scale_color_manual(values = country_colours) +
@@ -253,172 +329,186 @@ plot_itmes_in_food_quality <- function(data, plot_title, y_label) {
           plot.title = element_text(hjust = 0.5))}
 ```
 
-.1Per capita food supply variability (kcal/cap/day)
+2.1 Per capita food supply variability (kcal/cap/day)
+
 ```{r}
-#数据集准备
+#| echo: false
+
 plot_data_pfsv <- data %>%
   filter(item == "Per capita food supply variability (kcal/cap/day)")
 
-
-# 绘图
 plot_itmes_in_food_quality(
   data = plot_data_pfsv,
   plot_title = "Per Capita Food Supply Variability (2000–2023)",
   y_label = "Per Capita Variability(unit: kcal/cap/day)")
 ```
 
-.2Average dietary energy requirement (kcal/cap/day)
+In the earlier years, especially before 2007, two distinct trend groups are visible: Jordan, India, and South Korea show a generally higher and more fluctuating food supply variability, while China, Japan, and Indonesia remain in a lower and steadier range. After 2007, this grouping becomes less distinct, as the patterns begin to converge and fluctuate more uniformly. Indonesia’s variability shows a noticeable increase over time, with its values rising steadily in recent years. The overall trend indicates that while some countries maintain relatively stable levels, others—like Indonesia—experience growing fluctuations in food supply per capita, suggesting a loss of consistency in food availability.
+
+2.2 Average dietary energy requirement (kcal/cap/day)
+
 ```{r}
-#数据集准备
+#| echo: false
+
+# Filter the data for ploting.
 plot_data_aer <- data %>%
   filter(item == "Average dietary energy requirement (kcal/cap/day)")
 
-# 绘图
 plot_itmes_in_food_quality(
   data = plot_data_aer,
   plot_title = "Average Dietary Energy Requirement (2000–2023)",
   y_label = "Average Requirement(unit: kcal/cap/day)")
 ```
 
-.3 Prevalence of undernourishment (percent) (3-year average)
+In 2000, countries fall into two distinct groups based on dietary energy requirements: a high group (above 2400 kcal) including Singapore, Korea, Japan, and China, and a low group (below 2300 kcal) including Jordan, Indonesia, and India. Over time, most countries show increasing trends, especially in the lower group. Singapore maintains the highest levels, peaking around 2540 kcal in 2010. Korea shows a similar rise-then-stabilize pattern. Japan declines steadily, while China increases overall with fluctuations around 2007 and 2017. Jordan, initially in the lower group, nearly reaches 2410 kcal by 2023, narrowing the gap significantly.
 
-Note: 没有新加坡的数据，因为【补充理由以及论文链接】
+2.3 Prevalence of undernourishment (percent) (3-year average)
+
 ```{r}
-#数据集准备:
+#| warning: false
+#| echo: false
+
 plot_data_pu <- data %>%
   filter(item == "Prevalence of undernourishment (percent) (3-year average)")
 
-# 绘图
 plot_itmes_in_food_quality(
   data = plot_data_pu,
   plot_title = "Prevalence of Undernourishment (3-year average)(2000–2023)",
   y_label = "Undernourishment(%)")
 ```
 
-
-单个国家的数据
-
-估算缩放数值
-```{r}
-data %>%
-  filter(area == "China",
-         item == "Average dietary energy requirement (kcal/cap/day)") %>%
-  summarise(
-    mean_energy = mean(value, na.rm = TRUE),
-    mean_price = mean(food_price, na.rm = TRUE),
-    scale_factor = mean_energy / mean_price
-  )
-```
-画图
-```{r}
-# 准备数据（只举例一个国家；多个国家建议 facet_wrap）
-plot_china_data <- data %>%
-  filter(area == "China" & 
-         item == "Average dietary energy requirement (kcal/cap/day)") %>%
-  select(year, energy_req = value, food_price)
-
-# 为了使它们在图上比例差不多，我们缩放 food_price
-# 比如乘上 20（也可以根据实际均值比例动态调整）
-ggplot(plot_china_data, aes(x = year)) +
-  geom_line(aes(y = energy_req), 
-            size = 1) +
-  geom_line(aes(y = food_price * 30), 
-            size = 1, 
-            linetype = "dashed") +
-  scale_y_continuous(name = "Energy Requirement (kcal/cap/day)",
-                     sec.axis = sec_axis(~ . / 30, 
-                                         name = "Food Price Index (2015 = 100)")) +
-  labs(title = "Energy Requirement vs Food Price in China",
-       x = "Year") +
-  theme_minimal() +
-  theme(legend.position = "bottom")
-```
-
-挑选典型国家进行分面对比
-```{r}
-# 筛选出你关心的那一项
-energy_req_data <- data %>%
-  filter(item == "Average dietary energy requirement (kcal/cap/day)")
-
-# 合并energy和food_price（假设在同一行，不需要 reshape）
-plot_er <- energy_req_data %>%
-  select(area, year, value, food_price) %>%
-  rename(energy_req = value)
-
-# 画图
-ggplot(plot_er, aes(x = year)) +
-  geom_line(aes(y = energy_req, color = "Energy Requirement")) +
-  geom_line(aes(y = food_price, color = "Food Price")) +
-  facet_wrap(~ area) +
-  labs(x = "Year", y = "Value", color = "Indicator",
-       title = "Trends of Energy Requirement and Food Price Over Time") +
-  theme_minimal()
-```
-
+The chart shows three main trends in the prevalence of undernourishment across the selected Asian countries. First, an improving trend is observed in China, where the indicator consistently declines over time. India and Indonesia also initially improve, but both show a rebound around 2016, indicating some reversal. Second, a worsening trend is evident in Jordan, where undernourishment increases gradually over the years. Finally, the developed countries—Japan and South Korea—maintain consistently low levels, suggesting stable food security. These distinct patterns highlight varying nutritional challenges and progress among the countries.
 
 
 ### Conclusions
 
+#### Overall Food Quality
 
+-   The improvement in food quality is becoming increasingly visible in developing countries. Countries like China and Indonesia show a general upward trend in dietary energy supply, while their undernourishment rates have declined steadily. This suggests that people are not only eating more, but also gaining better access to adequate nutrition—an encouraging sign of progress toward a more “worth it” food system.
+
+-   Rising energy demand but unstable food systems: The case of Jordan. Jordan’s dietary energy supply increased from around 2270 kcal in 2000 to over 2350 kcal in 2023 . However, it also exhibits high food price volatility, rapidly rising food prices, and a persistently high undernourishment rate. This combination highlights food system instability: while caloric intake is rising, it may not translate to nutritional adequacy or consistent access.
+
+-   Low intake doesn’t mean undernourishment: Japan’s “less is more” approach. Japan’s dietary energy supply shows a gradual decrease from 2000 to 2023, yet its undernourishment rate remains the lowest among all countries observed, and its food price trends remain stable. This indicates a high-quality, balanced diet—fewer calories, but better nutrition.
+
+#### Discussion
+
+🍚 Who’s paying the most for their meals?
+To answer this, I compared four indicators: food_price, price_volatility, calorie_supply, and undernourishment. 📊 My goal is to figure out not just who spends more, but who eats smart.
+
+By 2023, Japan emerged as the most “worth it” country: stable prices, moderate and steady energy supply, and barely any undernourishment. A quiet triumph in dietary quality. 🥢 Meanwhile, China showed remarkable progress—though food is more expensive, calories are up and undernourishment is down. 📈
+
+Back in 2000, both countries were mid-range, but now they’ve climbed to the top. Maybe it shows us something bigger: as economies grow, it’s not just about how much we eat, or how costly—but how well we eat. 🥦💡
+
+Disclaimer: Just sharing some data-driven foodie thoughts—don’t take it too seriously, but definitely take it with a grain of salt 🧂. 
+
+Thank you for reading!
 
 ### References
 
-National Bureau of Statistics of China. (2001). China Statistical Yearbook 2001. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2002). China Statistical Yearbook 2002. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2003). China Statistical Yearbook 2003. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2004). China Statistical Yearbook 2004. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2005). China Statistical Yearbook 2005. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2006). China Statistical Yearbook 2006. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2007). China Statistical Yearbook 2007. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2008). China Statistical Yearbook 2008. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2009). China Statistical Yearbook 2009. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2010). China Statistical Yearbook 2010. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2011). China Statistical Yearbook 2011. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2012). China Statistical Yearbook 2012. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2013). China Statistical Yearbook 2013. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2014). China Statistical Yearbook 2014. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2015). China Statistical Yearbook 2015. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2016). China Statistical Yearbook 2016. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2017). China Statistical Yearbook 2017. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2018). China Statistical Yearbook 2018. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2019). China Statistical Yearbook 2019. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2020). China Statistical Yearbook 2020. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2021). China Statistical Yearbook 2021. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2022). China Statistical Yearbook 2022. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2023). China Statistical Yearbook 2023. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
-National Bureau of Statistics of China. (2024). China Statistical Yearbook 2024. China Statistics Press. https://www.stats.gov.cn/sj/ndsj/
+[© FAO] [2025] [Consumer Price Indices (FAOSTAT)] [N/A] [https://www.fao.org/faostat/en/#data/CP] [Accessed 14 June 2025]
 
+[© FAO] [2025] [Food Security Indicators (FAOSTAT)] [N/A] [https://www.fao.org/faostat/en/#data/FS] [Accessed 14 June 2025]
 
+National Bureau of Statistics of China. (2001). China statistical yearbook 2001 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2001c/mulu.htm
 
+National Bureau of Statistics of China. (2002). China statistical yearbook 2002 [《中国统计年鉴》]. https://www.stats.gov.cn/yearbook2001/indexC.htm
 
+National Bureau of Statistics of China. (2003). China statistical yearbook 2003 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/yearbook2003_c.pdf
 
+National Bureau of Statistics of China. (2004). China statistical yearbook 2004 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/yb2004-c/indexch.htm
 
+National Bureau of Statistics of China. (2005). China statistical yearbook 2005 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2005/indexeh.htm
 
+National Bureau of Statistics of China. (2006). China statistical yearbook 2006 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2006/indexeh.htm
 
+National Bureau of Statistics of China. (2007). China statistical yearbook 2007 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2007/indexeh.htm
 
+National Bureau of Statistics of China. (2008). China statistical yearbook 2008 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2008/indexeh.htm
 
+National Bureau of Statistics of China. (2009). China statistical yearbook 2009 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2009/indexeh.htm
 
+National Bureau of Statistics of China. (2010). China statistical yearbook 2010 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2010/indexeh.htm
 
+National Bureau of Statistics of China. (2011). China statistical yearbook 2011 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2011/indexeh.htm
 
+National Bureau of Statistics of China. (2012). China statistical yearbook 2012 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2012/indexeh.htm
 
+National Bureau of Statistics of China. (2013). China statistical yearbook 2013 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2013/indexeh.htm
+
+National Bureau of Statistics of China. (2014). China statistical yearbook 2014 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2014/indexeh.htm
+
+National Bureau of Statistics of China. (2015). China statistical yearbook 2015 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2015/indexeh.htm
+
+National Bureau of Statistics of China. (2016). China statistical yearbook 2016 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2016/indexeh.htm
+
+National Bureau of Statistics of China. (2017). China statistical yearbook 2017 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2017/indexeh.htm
+
+National Bureau of Statistics of China. (2018). China statistical yearbook 2018 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2018/indexeh.htm
+
+National Bureau of Statistics of China. (2019). China statistical yearbook 2019 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2019/indexeh.htm
+
+National Bureau of Statistics of China. (2020). China statistical yearbook 2020 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2020/indexeh.htm
+
+National Bureau of Statistics of China. (2021). China statistical yearbook 2021 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2021/indexeh.htm
+
+National Bureau of Statistics of China. (2022). China statistical yearbook 2022 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2022/indexeh.htm
+
+National Bureau of Statistics of China. (2023). China statistical yearbook 2023 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2023/indexeh.htm
+
+National Bureau of Statistics of China. (2024). China statistical yearbook 2024 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2024/indexeh.htm
+
+Wickham H, Hester J, Bryan J (2024). *readr: Read Rectangular Text Data*. doi:10.32614/CRAN.package.readr <https://doi.org/10.32614/CRAN.package.readr>, R package version 2.1.5, <https://CRAN.R-project.org/package=readr>.
+
+Wickham H, Bryan J (2025). *readxl: Read Excel Files*. doi:10.32614/CRAN.package.readxl <https://doi.org/10.32614/CRAN.package.readxl>, R package version 1.4.5, <https://CRAN.R-project.org/package=readxl>. 
+
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” *Journal of Open Source Software*, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
+
+Wickham H, Vaughan D, Girlich M (2024). *tidyr: Tidy Messy Data*. doi:10.32614/CRAN.package.tidyr <https://doi.org/10.32614/CRAN.package.tidyr>, R package version 1.3.1, <https://CRAN.R-project.org/package=tidyr>. 
+Wickham H, François R, Henry L, Müller K, Vaughan D (2023). *dplyr: A Grammar of Data Manipulation*. doi:10.32614/CRAN.package.dplyr <https://doi.org/10.32614/CRAN.package.dplyr>, R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>. 
+
+Wickham H (2023). _stringr: Simple, Consistent Wrappers for Common String Operations_.
+  doi:10.32614/CRAN.package.stringr <https://doi.org/10.32614/CRAN.package.stringr>, R package version
+  1.5.1, <https://CRAN.R-project.org/package=stringr>.
+
+Wickham H (2023). *stringr: Simple, Consistent Wrappers for Common String Operations*. doi:10.32614/CRAN.package.stringr <https://doi.org/10.32614/CRAN.package.stringr>, R package version 1.5.1, <https://CRAN.R-project.org/package=stringr>. Firke S (2024). *janitor: Simple Tools for Examining and Cleaning Dirty Data*. doi:10.32614/CRAN.package.janitor <https://doi.org/10.32614/CRAN.package.janitor>, R package version 2.2.1, <https://CRAN.R-project.org/package=janitor>. 
+
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+
+Xie Y (2025). _knitr: A General-Purpose Package for Dynamic Report
+  Generation in R_. R package version 1.50, <https://yihui.org/knitr/>.
+
+  Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd edition. Chapman
+  and Hall/CRC. ISBN 978-1498716963
+
+  Yihui Xie (2014) knitr: A Comprehensive Tool for Reproducible Research in
+  R. In Victoria Stodden, Friedrich Leisch and Roger D. Peng, editors,
+  Implementing Reproducible Computational Research. Chapman and Hall/CRC.
+  ISBN 978-1466561595
+
+Zhu H (2024). _kableExtra: Construct Complex Table with 'kable' and Pipe
+  Syntax_. doi:10.32614/CRAN.package.kableExtra
+  <https://doi.org/10.32614/CRAN.package.kableExtra>, R package version
+  1.4.0, <https://CRAN.R-project.org/package=kableExtra>.
 
 <!-- Task 3 Tab: Behind the Scenes -  -->
 
 ## Behind the Scenes
 
-Find out the history version in my [git repository](https://github.com/Acrea-QwQ/5512_Assignment_4_XyW.git).
+### Data Wrangling
+-  Extracting China’s food price data took up 90% of my time—seriously. The data was only available in image format from yearbooks, making web scraping impossible. Hopefully someday we’ll have smarter tools to deal with this kind of thing.
 
-### What's in this section
+-  Overall, data processing wasn’t too painful, thanks to the fact that the sources are major international organizations. Most datasets had already been reasonably cleaned. Plus, the use of standardized country codes (like ISO3) made joining tables more straightforward.
 
-1. 补充中国的food price数据花了好久的时间，因为数据是以图片形式呈现的，无法进行抓取
+### Challenges Along the Way
+-  Mid-project topic switch! Initially, I planned to use countries from multiple continents, but the patterns were too chaotic. I decided to narrow it down to Asian countries only, which made the dataset more geographically coherent—and the trends easier to spot 📈.
 
-2.世界各地的数据看不清楚模式，所以改了只研究亚洲的
+-  Variable trouble: One of the variables I introduced later—Prevalence of undernourishment (percent)—used three-year average intervals instead of single-year values. I kept getting mysterious errors when running old code from the intercontinental version of the dataset. It took some serious digging to realize the issue was the year format 😅. Lesson learned: whenever switching variables (ideally avoid doing so mid-project), double-check their structure, even if the data looks "clean." I’m glad I caught the issue and fixed it—definitely grew a bit as a data wrangler there.
 
-3.修改了研究的变量之后，有一个prvelence的year数据是个区间。本来不想改，使用rd_fq <- rd_fq %>%
-  mutate(is_range_year = str_detect(Year, "^\\d{4}-\\d{4}$"))
-进行处理，但是因为后面需要join，所以只能统一一下。
+### Limitations & Future Improvements
+-  As I mentioned in the README, I should look into more robust methods for converting monthly food prices to annual values—perhaps using weighted averages instead of simple means.
 
-Here is where you should tell us about your reflection on your analysis (Task 3).
+-  National food price indices can be heavily skewed by income distribution. For example, very wealthy or very poor populations might distort the "average." Addressing this properly would require country-level microdata, ideally scraped from national statistics portals and filtered for outliers.
 
-Again, these are the details about **your** perspective and the gritty details behind the scenes of your analysis.
+### History Log
+You can check out the version history on my **[GitHub repository](https://github.com/Acrea-QwQ/5512_Assignment_4_XyW.git)**. I’ve marked key stages using tags, and you might find the commit messages helpful—they highlight major changes I made along the way.
 :::
