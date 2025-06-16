@@ -48,7 +48,7 @@ Together, these indicators offer a multidimensional view: not only how much peop
 
 3.  Food price data for China This data is missing from the FAO database. To obtain it, I manually collected the data by consulting the [China Statistical Yearbook](https://www.stats.gov.cn/english/Statisticaldata/yearbook/) from 2001 to 2024. I had hoped to use web scraping techniques to improve efficiency, but unfortunately, the yearbook does not have an online version with a structured webpage. Instead, the data is presented as images, making manual lookup the only feasible way to gather this important data.
 
-4.Classification data of developing and developed countries Use this [URL](https://unstats.un.org/unsd/methodology/m49/historical-classification-of-developed-and-developing-regions.xlsx).
+4. Classification data of developing and developed countries Use this [URL](https://unstats.un.org/unsd/methodology/m49/historical-classification-of-developed-and-developing-regions.xlsx).
 
 ### Term of Use
 
@@ -74,10 +74,6 @@ library(janitor)
 library(ggplot2)
 library(knitr)
 library(kableExtra)
-```
-
-```{r}
-names(data)
 ```
 
 Read the data.
@@ -257,6 +253,7 @@ data %>%
       caption = "Summary of Missing Values by Country and Item") %>%
   kable_styling()
 ```
+
 From the tables we can see that food price indices mostly range between 30 and 70, while median dietary energy requirements remain around 2400 kcal. Singapore has missing values in certain years, which should be noted during analysis.
 
 
@@ -413,6 +410,8 @@ Thank you for reading!
 
 [© FAO] [2025] [Food Security Indicators (FAOSTAT)] [N/A] [https://www.fao.org/faostat/en/#data/FS] [Accessed 14 June 2025]
 
+United Nations Statistics Division. (n.d.). Historical classification of developed and developing regions [Data file]. United Nations. https://unstats.un.org/unsd/methodology/m49/historical-classification-of-developed-and-developing-regions.xlsx
+
 National Bureau of Statistics of China. (2001). China statistical yearbook 2001 [《中国统计年鉴》]. https://www.stats.gov.cn/sj/ndsj/2001c/mulu.htm
 
 National Bureau of Statistics of China. (2002). China statistical yearbook 2002 [《中国统计年鉴》]. https://www.stats.gov.cn/yearbook2001/indexC.htm
@@ -515,4 +514,7 @@ Zhu H (2024). _kableExtra: Construct Complex Table with 'kable' and Pipe
 
 ### History Log
 You can check out the version history on my **[GitHub repository](https://github.com/Acrea-QwQ/5512_Assignment_4_XyW.git)**. I’ve marked key stages using tags, and you might find the commit messages helpful—they highlight major changes I made along the way.
+
+### AI acknowledgment
+https://chatgpt.com/share/684ff2e0-c9cc-8009-a45e-50c07f19cdc3
 :::
